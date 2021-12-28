@@ -6,6 +6,29 @@
 #include <stdlib.h>
 #define PI 3.14
 
+// Variabel Kamera (Menentukan Posisi Awal Kamera)
+float angle=0.0, deltaAngle = 0.0, ratio;
+float x=-10.0f,y=25.0f,z=160.0f; // posisi awal kamera
+float lx=0.0f,ly=0.0f,lz=-1.0f;
+int deltaMove = 0,h,w;
+
+// Variabel Pesawat (Inisialisasi Awal)
+float posY = 0, posX = 0, posZ = 0, wingDownY=0, wingDownX=0, bodyDownX=0,bodyDownY=0, angleWing=0;
+static int rotAngleX =0, rotAngleY =0, rotAngleZ =0;
+int planeMove = 0, planeBankLeft = 1, planeIdle=1;
+float angleZ = 0, angleX = 0, buildingAngle = 0,buildDown=0;
+GLUquadricObj *IDquadric;
+
+// Variabel Pencahayaan (Inisialisasi Awal)
+const GLfloat light_ambient[] = { 0.5f, 0.5f, 0.5f, 0.0f };
+const GLfloat light_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+const GLfloat light_position[] = { 0.0f, 20.0f, 10.0f, 1.0f };
+const GLfloat mat_ambient[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+const GLfloat mat_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+const GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+const GLfloat high_shininess[] = { 100.0f };
+
 // Fungsi Init (Untuk Membuat Tempat Menggambar)
 void init(void)
 {
@@ -16,27 +39,6 @@ void init(void)
 	gluQuadricTexture(IDquadric, GL_TRUE); // Create Texture Coords ( NEW )
 }
 
-// Variabel Kamera (Menentukan Posisi Awal Kamera)
-float angle=0.0, deltaAngle = 0.0, ratio;
-float x=-0.0f,y=1.75f,z=15.0f; // posisi awal kamera
-float lx=0.0f,ly=0.0f,lz=-1.0f;
-int deltaMove = 0,h,w;
-
-// Variabel Pesawat (Inisialisasi Awal)
-float posY = 0, posX = 0, posZ = 0, wingDownY=0, wingDownX=0, bodyDownX=0,bodyDownY=0, angleWing=0;
-static int rotAngleX =0, rotAngleY =0, rotAngleZ =0;
-int planeMove = 0, planeBankLeft = 1, planeIdle=1;
-float angleZ = 0, angleX = 0, buildingAngle = 0,buildDown=0;
-GLUquadricObj *IDquadric;
-// Variabel Pencahayaan (Inisialisasi Awal)
-const GLfloat light_ambient[] = { 0.5f, 0.5f, 0.5f, 0.0f };
-const GLfloat light_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-const GLfloat light_position[] = { 0.0f, 20.0f, 10.0f, 1.0f };
-const GLfloat mat_ambient[] = { 0.7f, 0.7f, 0.7f, 1.0f };
-const GLfloat mat_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-const GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-const GLfloat high_shininess[] = { 100.0f };
 // Fungsi Reshape (Mempertahankan Bentuk Gambar)
 void Reshape(int w1, int h1)
 {
@@ -53,24 +55,25 @@ void Reshape(int w1, int h1)
 	glLoadIdentity();
 	gluLookAt(x, y, z, x + lx,y + ly,z + lz, 0.0f,1.0f,0.0f);
 }
+
 // Fungsi OrientMe (Pergerakkan Kamera Kanan/Kiri)
 void orientMe(float ang)
 {
-	// Fungsi ini untuk memutar arah kamera (tengok kiri/kanan)
 	lx = sin(ang/10);
 	lz = -cos(ang/10);
 	glLoadIdentity();
 	gluLookAt(x, y, z,x + lx,y + ly,z + lz, 0.0f,1.0f,0.0f);
 }
+
 // Fungsi moveMeFlat (Pergerakkan Kamera Maju/Mundur)
 void moveMeFlat(int i)
 {
-	// Fungsi ini untuk maju mundur kamera
 	x = x + i*(lx)*0.1;
 	z = z + i*(lz)*0.1;
 	glLoadIdentity();
 	gluLookAt(x, y, z, x + lx,y + ly,z + lz, 0.0f,1.0f,0.0f);
 }
+
 // Fungsi Keyboard
 void keyboard(unsigned char key, int x, int y)
 {
@@ -90,6 +93,7 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 	}glutPostRedisplay();
 }
+
 // Fungsi Press Key
 void pressKey(int k, int x, int y)
 {
@@ -127,13 +131,11 @@ void releaseKey(int key, int x, int y)
 		deltaAngle = 0.0f;
 		break;
 
-
  	}
 }
 
 // Fungsi Lightning (Mengaktifkan Pencahayaan)
 void lighting(){
-	// Fungsi mengaktifkan pencahayaan
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_LIGHT0);
@@ -180,6 +182,7 @@ void badanP()
 	glPopMatrix();
 
 }
+
 // Membentuk Sayap Dan Ekor 3D
 void triangularPrism()
 {
@@ -208,9 +211,9 @@ void triangularPrism()
         glVertex3f(-0.5,0,-0.5);
     glEnd();
 }
+
 // Mengatur Posisi Sayap Kiri
 void wingL(){
-	//wingLeft
 	glColor3f(0.0,0.2,0.0);
 	glPushMatrix();
 	glTranslatef(1.0,11.0,0.0);
@@ -220,9 +223,9 @@ void wingL(){
 	triangularPrism();
 	glPopMatrix();
 }
+
 // Mengatur Posisi Sayap Kanan
 void wingR(){
-	//wingRight
 	glColor3f(0.0,0.2,0.0);
 	glPushMatrix();
 	glTranslatef(1.0,11.0,0.0);
@@ -232,9 +235,9 @@ void wingR(){
 	triangularPrism();
 	glPopMatrix();
 }
+
 // Mengatur Posisi Ekor
 void tailP(){
-	//Tail
 	glPushMatrix();
 	glTranslatef(15.0,13.0,0.0);
 	glRotated(-90,0,1,0);
@@ -258,5 +261,75 @@ void tailP(){
 }
 
 // Animasi Pesawat
+
 // Fungsi Display (Menampilkan Output Program)
+void display() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	if (deltaMove)
+		moveMeFlat(deltaMove);
+	if (deltaAngle) {
+		angle += deltaAngle;
+		orientMe(angle);
+	}
+	glPushMatrix();
+		glRotated(rotAngleX+10, 1, 0, 0);
+		glRotated(rotAngleY, 0, 1, 0);
+		glRotated(rotAngleZ, 0, 0, 1);
+		glRotated(-90,0,1,0);
+		glPushMatrix();
+			int tinggi = 50;
+			glTranslatef(0,tinggi/2,-10);
+			glPushMatrix();
+				glTranslatef(0,buildDown,0);
+				glRotated( buildingAngle,1,0,0);
+				glTranslatef(0,tinggi/2,0);
+			glPopMatrix();
+			glPushMatrix();
+				glTranslatef(0,buildDown,0);
+				glRotated( buildingAngle,0,0,1);
+				glTranslatef(0,tinggi/2,20);
+			glPopMatrix();
+			glTranslatef(0,0,20);
+		glPopMatrix();
+//		Grid();
+//        Grid2();
+		glTranslatef(50,15,0);
+		glTranslated(posX, posY, posZ);
+        glRotated(angleX, 1, 0, 0);
+		glPushMatrix();
+			glTranslatef(bodyDownX,bodyDownY,0);
+			badanP();
+			tailP();
+		glPopMatrix();
+		glTranslatef(wingDownX,wingDownY,0);
+		glRotated(-angleWing,0,1,0);
+		wingL();
+		glRotated(angleWing*2,0,1,0);
+		wingR();
+	glPopMatrix();
+	glFlush();
+	glutSwapBuffers();
+}
+
 // Memanggil Fungsi Untuk Manampilkan Objek Di Layar
+int main(int argc, char **argv)
+{
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+	glutInitWindowPosition(100,100);
+	glutInitWindowSize(640,480);
+	glutCreateWindow("Pesawat 3D");
+	glutSpecialFunc(pressKey);
+	glutSpecialUpFunc(releaseKey);
+	glutDisplayFunc(display);
+	glutKeyboardFunc(keyboard);
+	glutIdleFunc(display);
+	glutReshapeFunc(Reshape);
+//    glutTimerFunc(50, update, 0);
+	lighting();
+	init();
+	glClearColor(0.0f,0.7f,1.0f,1.0f); //Warna biru muda
+	glutMainLoop();
+	return(0);
+}
+
