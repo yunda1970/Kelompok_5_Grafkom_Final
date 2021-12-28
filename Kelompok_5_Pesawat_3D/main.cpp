@@ -17,4 +17,4 @@
 // Mengatur Posisi Ekor
 // Animasi Pesawat
 // Fungsi Display (Menampilkan Output Program)
-// Memanggil Fungsi Untuk Manampilkan Ojek Di Layar
+// Memanggil Fungsi Untuk Manampilkan Objek Di Layar
