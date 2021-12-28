@@ -1,4 +1,11 @@
 // File Header
+#include <math.h>
+#include <GL/glut.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define PI 3.14
+
 // Fungsi Init (Untuk Membuat Tempat Menggambar)
 // Variabel Kamera (Menentukan Posisi Awal Kamera)
 // Variabel Pesawat (Inisialisasi Awal)
