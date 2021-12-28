@@ -154,7 +154,7 @@ void lighting(){
 
 // Badan Pesawat
 void badanP()
-{	glColor3f(0.0,0.5,0.0);
+{	glColor3f(0.5,0.5,0.5);
     glPushMatrix();
 	glTranslatef(-7.0f,12.0f,0.0f);
 	glRotated(90, 0, 1, 0);
@@ -187,7 +187,7 @@ void badanP()
 void triangularPrism()
 {
     glBegin(GL_QUADS);
-        glColor3f(0.0,0.4,0.0);
+        glColor3f(0.1,0.0,0.0);
         glVertex3f(0.5, 0, 0.5);
         glVertex3f(0.5, 0, -0.5);
         glVertex3f(-0.5, 0, -0.5);
@@ -202,7 +202,7 @@ void triangularPrism()
         glVertex3f(0.5,0,0.5);
     glEnd();
     glBegin(GL_TRIANGLES);
-        glColor3f(0.0,0.2,0.0);
+        glColor3f(0.4,0.0,0.0);
         glVertex3f(0.5,0,0.5);
         glVertex3f(0.5,1,-0.5);
         glVertex3f(0.5,0,-0.5);
@@ -260,6 +260,19 @@ void tailP(){
 	glPopMatrix();
 }
 
+// Membuat Laut
+void Grid ()
+{
+    glColor3f(0.0f,0.0f,0.2f);
+    glBegin(GL_QUADS);
+    glVertex3f(-1000,-0.1,1000);
+    glVertex3f(-1000,-0.1,-1004);
+    glVertex3f(1000,-0.1,-1004);
+    glVertex3f(1000,-0.1,1000);
+    glEnd();
+
+}
+
 // Animasi Pesawat
 
 // Fungsi Display (Menampilkan Output Program)
@@ -291,8 +304,7 @@ void display() {
 			glPopMatrix();
 			glTranslatef(0,0,20);
 		glPopMatrix();
-//		Grid();
-//        Grid2();
+		Grid();
 		glTranslatef(50,15,0);
 		glTranslated(posX, posY, posZ);
         glRotated(angleX, 1, 0, 0);

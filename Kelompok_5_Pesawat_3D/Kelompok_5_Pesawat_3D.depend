@@ -1,7 +1,9 @@
 # depslib dependency file v1.0
-1640692846 source:e:\kelompok_5_grafkom_final\kelompok_5_pesawat_3d\main.cpp
-	<GLUT/glut.h>
+1640713177 source:e:\kelompok_5_grafkom_final\kelompok_5_pesawat_3d\main.cpp
+	<math.h>
 	<GL/glut.h>
+	<stdio.h>
+	<string.h>
 	<stdlib.h>
 
 1426324528 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
@@ -227,4 +229,17 @@
 1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
+
+1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
+	<_mingw.h>
+
+1341006776 c:\program files (x86)\codeblocks\mingw\include\stdio.h
+	<_mingw.h>
+	<stddef.h>
+	<stdarg.h>
+	<sys/types.h>
+
+1341006780 c:\program files (x86)\codeblocks\mingw\include\sys\types.h
+	<_mingw.h>
+	<stddef.h>
 
