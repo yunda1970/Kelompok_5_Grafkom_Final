@@ -54,8 +54,42 @@ void Reshape(int w1, int h1)
 	gluLookAt(x, y, z, x + lx,y + ly,z + lz, 0.0f,1.0f,0.0f);
 }
 // Fungsi OrientMe (Pergerakkan Kamera Kanan/Kiri)
+void orientMe(float ang)
+{
+	// Fungsi ini untuk memutar arah kamera (tengok kiri/kanan)
+	lx = sin(ang/10);
+	lz = -cos(ang/10);
+	glLoadIdentity();
+	gluLookAt(x, y, z,x + lx,y + ly,z + lz, 0.0f,1.0f,0.0f);
+}
 // Fungsi moveMeFlat (Pergerakkan Kamera Maju/Mundur)
+void moveMeFlat(int i)
+{
+	// Fungsi ini untuk maju mundur kamera
+	x = x + i*(lx)*0.1;
+	z = z + i*(lz)*0.1;
+	glLoadIdentity();
+	gluLookAt(x, y, z, x + lx,y + ly,z + lz, 0.0f,1.0f,0.0f);
+}
 // Fungsi Keyboard
+void keyboard(unsigned char key, int x, int y)
+{
+	 switch (key)
+	{
+		case 'w': rotAngleX += 2; break;
+		case 's': rotAngleX -= 2; break;
+		case 'a': rotAngleY += 2; break;
+		case 'd': rotAngleY -= 2; break;
+		case 'q': rotAngleZ += 2; break;
+		case 'e': rotAngleZ -= 2; break;
+		case 'i': posX -= 1; break;
+		case 'k': posX += 1; break;
+		case 32 : rotAngleX=rotAngleY=rotAngleZ=0;posY = 0, posX = 0, posZ = 0; break;
+		case 'z' : exit(0);
+		default:
+		break;
+	}glutPostRedisplay();
+}
 // Fungsi Press Key
 void pressKey(int k, int x, int y)
 {
@@ -222,6 +256,7 @@ void tailP(){
 	triangularPrism();
 	glPopMatrix();
 }
+
 // Animasi Pesawat
 // Fungsi Display (Menampilkan Output Program)
 // Memanggil Fungsi Untuk Manampilkan Objek Di Layar
