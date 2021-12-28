@@ -199,6 +199,29 @@ void wingR(){
 	glPopMatrix();
 }
 // Mengatur Posisi Ekor
+void tailP(){
+	//Tail
+	glPushMatrix();
+	glTranslatef(15.0,13.0,0.0);
+	glRotated(-90,0,1,0);
+	glScalef(0.5,8.0,5.0);
+	triangularPrism();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(15.0,13.0,0.0);
+	glRotated(-90,0,1,0);
+	glRotated(-90,0,0,1);
+	glScalef(0.5,8.0,5.0);
+	triangularPrism();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(15.0,13.0,0.0);
+	glRotated(-90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(0.5,8.0,5.0);
+	triangularPrism();
+	glPopMatrix();
+}
 // Animasi Pesawat
 // Fungsi Display (Menampilkan Output Program)
 // Memanggil Fungsi Untuk Manampilkan Objek Di Layar
