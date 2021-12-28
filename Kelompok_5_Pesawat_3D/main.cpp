@@ -7,7 +7,21 @@
 #define PI 3.14
 
 // Fungsi Init (Untuk Membuat Tempat Menggambar)
+void init(void)
+{
+	glEnable (GL_DEPTH_TEST);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	IDquadric=gluNewQuadric(); // Create A Pointer To The Quadric Object ( NEW )
+	gluQuadricNormals(IDquadric, GLU_SMOOTH); // Create Smooth Normals ( NEW )
+	gluQuadricTexture(IDquadric, GL_TRUE); // Create Texture Coords ( NEW )
+}
+
 // Variabel Kamera (Menentukan Posisi Awal Kamera)
+float angle=0.0, deltaAngle = 0.0, ratio;
+float x=-0.0f,y=1.75f,z=15.0f; // posisi awal kamera
+float lx=0.0f,ly=0.0f,lz=-1.0f;
+int deltaMove = 0,h,w;
+
 // Variabel Pesawat (Inisialisasi Awal)
 // Variabel Pencahayaan (Inisialisasi Awal)
 // Fungsi Reshape (Mempertahankan Bentuk Gambar)
