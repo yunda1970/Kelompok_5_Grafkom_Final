@@ -117,9 +117,87 @@ void lighting(){
 }
 
 // Badan Pesawat
+void badanP()
+{	glColor3f(0.0,0.5,0.0);
+    glPushMatrix();
+	glTranslatef(-7.0f,12.0f,0.0f);
+	glRotated(90, 0, 1, 0);
+	gluCylinder(IDquadric, 2.5f, 2.5f, 17.5f, 32, 32);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(10.0f,12.0f,0.0f);
+	glRotated(53, 0, 1, 0);
+	glRotated(55, 0, 1, 1);
+	gluCylinder(IDquadric, 2.55f, 1.0f, 8.0f, 32, 32);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-11.8f,10.8f,0.0f);
+	glRotated(53, 0, 1, 0);
+	glRotated(55, 0, 1, 1);
+	gluCylinder(IDquadric, 1.0f, 2.6f, 5.5f, 32, 32);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-11.5f,10.9f,0.0f);
+	gluSphere(IDquadric, 1.0f, 32, 32);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(17.5f,13.7f,0.0f);
+	gluSphere(IDquadric, 1.0f, 32, 32);
+	glPopMatrix();
+
+}
 // Membentuk Sayap Dan Ekor 3D
+void triangularPrism()
+{
+    glBegin(GL_QUADS);
+        glColor3f(0.0,0.4,0.0);
+        glVertex3f(0.5, 0, 0.5);
+        glVertex3f(0.5, 0, -0.5);
+        glVertex3f(-0.5, 0, -0.5);
+        glVertex3f(-0.5, 0, 0.5);
+        glVertex3f(0.5,0,-0.5);
+        glVertex3f(0.5,1,-0.5);
+        glVertex3f(-0.5,1,-0.5);
+        glVertex3f(-0.5,0,-0.5);
+        glVertex3f(0.5,1,-0.5);
+        glVertex3f(-0.5,1,-0.5);
+        glVertex3f(-0.5,0,0.5);
+        glVertex3f(0.5,0,0.5);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glColor3f(0.0,0.2,0.0);
+        glVertex3f(0.5,0,0.5);
+        glVertex3f(0.5,1,-0.5);
+        glVertex3f(0.5,0,-0.5);
+        glVertex3f(-0.5,0,0.5);
+        glVertex3f(-0.5,1,-0.5);
+        glVertex3f(-0.5,0,-0.5);
+    glEnd();
+}
 // Mengatur Posisi Sayap Kiri
+void wingL(){
+	//wingLeft
+	glColor3f(0.0,0.2,0.0);
+	glPushMatrix();
+	glTranslatef(1.0,11.0,0.0);
+	glRotated(-90,0,1,0);
+	glRotated(-90,0,0,1);
+	glScalef(0.5,25.5,5.0);
+	triangularPrism();
+	glPopMatrix();
+}
 // Mengatur Posisi Sayap Kanan
+void wingR(){
+	//wingRight
+	glColor3f(0.0,0.2,0.0);
+	glPushMatrix();
+	glTranslatef(1.0,11.0,0.0);
+	glRotated(-90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(0.5,25.5,5.0);
+	triangularPrism();
+	glPopMatrix();
+}
 // Mengatur Posisi Ekor
 // Animasi Pesawat
 // Fungsi Display (Menampilkan Output Program)
