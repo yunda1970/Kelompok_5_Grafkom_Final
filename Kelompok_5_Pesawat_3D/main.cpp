@@ -57,8 +57,65 @@ void Reshape(int w1, int h1)
 // Fungsi moveMeFlat (Pergerakkan Kamera Maju/Mundur)
 // Fungsi Keyboard
 // Fungsi Press Key
+void pressKey(int k, int x, int y)
+{
+	// Fungsi ini akan dijalankan saat tombol keyboard ditekan dan belum dilepas
+ 	// Selama tombol ditekan, variabel angle dan move diubah => kamera  bergerak
+	switch (k)
+	{
+		case GLUT_KEY_UP : deltaMove = 1;break;
+		case GLUT_KEY_DOWN : deltaMove = -1;break;
+		case GLUT_KEY_LEFT : deltaAngle = -0.01f;break;
+		case GLUT_KEY_RIGHT : deltaAngle = 0.01f;break;
+	 }
+}
+
 // Release Key
+void releaseKey(int key, int x, int y)
+{
+	// Fungsi ini akan dijalankan saat tekanan tombol keyboard dilepas
+	// Saat tombol dilepas, variabel angle dan move diset nol => kamera berhenti
+	switch (key)
+	{
+		case GLUT_KEY_UP : if (deltaMove > 0)
+		deltaMove = 0;
+		break;
+
+		case GLUT_KEY_DOWN : if (deltaMove < 0)
+		deltaMove = 0;
+		break;
+
+		case GLUT_KEY_LEFT : if (deltaAngle < 0.0f)
+		deltaAngle = 0.0f;
+		break;
+
+		case GLUT_KEY_RIGHT : if (deltaAngle > 0.0f)
+		deltaAngle = 0.0f;
+		break;
+
+
+ 	}
+}
+
 // Fungsi Lightning (Mengaktifkan Pencahayaan)
+void lighting(){
+	// Fungsi mengaktifkan pencahayaan
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
+}
+
 // Badan Pesawat
 // Membentuk Sayap Dan Ekor 3D
 // Mengatur Posisi Sayap Kiri
