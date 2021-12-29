@@ -277,6 +277,55 @@ void Grid ()
     glColor3f(1.0f,1.0f,0.0f);
     glutSolidSphere(5,20,20);
     glPopMatrix();
+
+}
+
+// Membentuk Awan
+void Awan ()
+{
+    glPushMatrix();
+        glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+        glColor3ub(153,223,255);
+        glTranslatef(0,70,11);
+        glutSolidSphere(10,50,50);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(10,70,11);
+        glutSolidSphere(5,50,50);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-2,76,8);
+        glutSolidSphere(7,50,50);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-10,67,10);
+        glutSolidSphere(7,50,50);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(6,68,12);
+        glutSolidSphere(7,50,50);
+    glPopMatrix();
+
+}
+
+// Memanggil Awan (Memperbanyak)
+void Panggil_Awan()
+{
+    glPushMatrix();
+        glScaled(0.9,0.9,0.9);
+        glTranslated(-80.0,20.0,-50.0);
+        Awan();
+    glPopMatrix();
+
+    glPushMatrix();
+        glScaled(0.9,0.9,0.9);
+        glTranslated(-80.0,5.0,50.0);
+        Awan();
+    glPopMatrix();
 }
 
 // Animasi Pesawat
@@ -332,6 +381,8 @@ void display() {
 			glTranslatef(0,0,20);
 		glPopMatrix();
 		Grid();
+		Awan();
+		Panggil_Awan();
 		glTranslatef(50,15,0);
 		glTranslated(posX, posY, posZ);
         glRotated(angleX, 1, 0, 0);
