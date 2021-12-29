@@ -260,9 +260,9 @@ void tailP(){
 	glPopMatrix();
 }
 
-// Membuat Laut
 void Grid ()
 {
+    // Membuat Laut
     glColor3f(0.0f,0.0f,0.2f);
     glBegin(GL_QUADS);
     glVertex3f(-1000,-0.1,1000);
@@ -270,6 +270,8 @@ void Grid ()
     glVertex3f(1000,-0.1,-1004);
     glVertex3f(1000,-0.1,1000);
     glEnd();
+
+    // Membuat Matahari
 
 }
 
