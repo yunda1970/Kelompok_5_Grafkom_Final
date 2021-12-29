@@ -276,6 +276,27 @@ void Grid ()
 }
 
 // Animasi Pesawat
+void update(int value) {
+	if(planeIdle){
+	    if (planeBankLeft) {
+	        angleX += 0.5;
+	    } else {
+	        angleX -= 0.5;
+	    }
+
+
+	    if (angleX > 4) {
+	        planeBankLeft = 0;
+	    } else if (angleX < -4) {
+	        planeBankLeft = 1;
+	    }
+	}else{
+		angleX=0;
+	}
+
+    glutPostRedisplay();
+    glutTimerFunc(50,update,0);//delay
+}
 
 // Fungsi Display (Menampilkan Output Program)
 void display() {
@@ -339,7 +360,7 @@ int main(int argc, char **argv)
 	glutKeyboardFunc(keyboard);
 	glutIdleFunc(display);
 	glutReshapeFunc(Reshape);
-//    glutTimerFunc(50, update, 0);
+    glutTimerFunc(50, update, 0);
 	lighting();
 	init();
 	glClearColor(0.0f,0.7f,1.0f,1.0f); //Warna biru muda
