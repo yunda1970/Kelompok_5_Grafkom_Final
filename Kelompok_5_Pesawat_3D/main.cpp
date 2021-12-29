@@ -326,6 +326,12 @@ void Panggil_Awan()
         glTranslated(-80.0,5.0,50.0);
         Awan();
     glPopMatrix();
+
+    glPushMatrix();
+        glScaled(0.9,0.9,0.9);
+        glTranslated(-50.0,10.0,80.0);
+        Awan();
+    glPopMatrix();
 }
 
 // Animasi Pesawat
