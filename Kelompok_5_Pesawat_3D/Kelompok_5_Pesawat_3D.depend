@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1640713177 source:e:\kelompok_5_grafkom_final\kelompok_5_pesawat_3d\main.cpp
+1640788975 source:e:\kelompok_5_grafkom_final\kelompok_5_pesawat_3d\main.cpp
 	<math.h>
 	<GL/glut.h>
 	<stdio.h>

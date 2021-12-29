@@ -273,7 +273,7 @@ void Grid ()
 
     // Membuat Matahari
     glPushMatrix();
-    glTranslatef(50,35,55);
+    glTranslatef(20,80,55);
     glColor3f(1.0f,1.0f,0.0f);
     glutSolidSphere(5,20,20);
     glPopMatrix();
